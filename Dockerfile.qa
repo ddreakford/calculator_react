@@ -4,6 +4,7 @@ FROM        node:lts
 
 # Base dir for app and SeaLights libs
 WORKDIR     /usr/local/lib
+ENV         PUBLIC_URL="/"
 
 # Add http-server to serve the app
 RUN npm install http-server
