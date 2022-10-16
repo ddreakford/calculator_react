@@ -22,6 +22,7 @@ pipeline {
         stage('Build the app') {
             steps {
                 sh """
+                    npm install
                     export PUBLIC_URL="/" && npm run build 
                 """
             }
