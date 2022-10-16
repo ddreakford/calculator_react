@@ -12,3 +12,9 @@ build
 # misc
 .DS_Store
 npm-debug.log
+
+# SeaLights
+sl_build
+sl-dry-run-output
+sltoken*.txt
+buildSessionId
