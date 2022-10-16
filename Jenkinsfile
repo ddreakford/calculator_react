@@ -15,7 +15,7 @@ pipeline {
         stage('SCM (Git)') {
             steps {
                 cleanWs()
-                git branch: params.BRANCH, url: 'https://github.com/ddreakford/calculator_react.git'
+                git branch: ${BRANCH}, url: 'https://github.com/ddreakford/calculator_react.git'
             }
         }
 
