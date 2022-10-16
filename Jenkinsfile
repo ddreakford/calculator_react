@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'BRANCH', defaultValue: 'main', description: 'The branch to locally clone, build and onboard to SeaLights')
+        string(name: 'BRANCH', defaultValue: 'master', description: 'The branch to locally clone, build and onboard to SeaLights')
         string(name: 'DOCKER_REPO', defaultValue: 'dwaynedreakford', description: 'Your Docker repo')
         string(name: 'APP_IMAGE_NAME', defaultValue: 'react_calculator', description: 'Name of the image to be deployed')
     }
