@@ -1,0 +1,15 @@
+# Create image for Test/QA with monitoring by SeaLights
+
+FROM        node:lts
+
+# Base dir for app and SeaLights libs
+WORKDIR     /usr/local/lib
+
+# Add http-server to serve the app
+RUN npm install http-server
+
+# Add app
+COPY        sl_build/ .
+EXPOSE      8092
+
+ENTRYPOINT ["./node_modules/.bin/http-server", "./sl_build", "-p 8092"]
