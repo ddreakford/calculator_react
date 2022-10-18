@@ -24,3 +24,8 @@ Usage
 ---
 
 `npm start`
+
+Onboard to SeaLights for Quality Analytics
+---
+1. [Jenkinsfile](https://github.com/ddreakford/calculator_react/blob/master/Jenkinsfile)
+2. [Dockerfile.qa](https://github.com/ddreakford/calculator_react/blob/master/Dockerfile.qa)
