@@ -8,6 +8,10 @@
 # This is used for both front end JS and Node JS.
 npm install slnodejs
 
+# Build the [React.js] app
+#
+export PUBLIC_URL="/" && npm run build 
+
 # [PREREQ]
 # Run dryRun to identify and fix issues that would inhibit successful 
 # onboarding.
@@ -16,10 +20,6 @@ npm install slnodejs
     --scm git \
     --es6Modules \
     --babylonPlugins jsx
-
-# Build the [React.js] app
-#
-export PUBLIC_URL="/" && npm run build 
 
 # Optional: Ensure the app works before instrumentation
 # http-server ./build
