@@ -83,40 +83,42 @@ pipeline {
             }
         }
         stage('Unit Tests') {
-            sh """
-                # Enable SL agent debugging
-                export NODE_DEBUG=sl-file
-                export SL_LOG_LEVEL=debug
+            steps {
+                sh """
+                    # Enable SL agent debugging
+                    export NODE_DEBUG=sl-file
+                    export SL_LOG_LEVEL=debug
 
-                # Open the test stage
-                ./node_modules/.bin/slnodejs start \
-                    --tokenfile sealights/sltoken.txt \
-                    --buildsessionidfile sealights/buildSessionId \
-                    --labid "dd-devjs-laptop" \
-                    --testStage "Unit Tests"
+                    # Open the test stage
+                    ./node_modules/.bin/slnodejs start \
+                        --tokenfile sealights/sltoken.txt \
+                        --buildsessionidfile sealights/buildSessionId \
+                        --labid "dd-devjs-laptop" \
+                        --testStage "Unit Tests"
 
-                CI=true npm run test:ci
-                
-                # Upload the coverage report
-                ./node_modules/.bin/slnodejs nycReport \
-                    --tokenfile sealights/sltoken.txt \
-                    --buildsessionidfile buildSessionId \
-                    --labid "dd-devjs-laptop" \
-                    --report coverage/coverage-final.json
-                
-                # Upload test results
-                ./node_modules/.bin/slnodejs uploadReports \
-                    --tokenfile sealights/sltoken.txt \
-                    --buildsessionidfile buildSessionId \
-                    --labid "dd-devjs-laptop" \
-                    --reportFile junit.xml
+                    CI=true npm run test:ci
+                    
+                    # Upload the coverage report
+                    ./node_modules/.bin/slnodejs nycReport \
+                        --tokenfile sealights/sltoken.txt \
+                        --buildsessionidfile buildSessionId \
+                        --labid "dd-devjs-laptop" \
+                        --report coverage/coverage-final.json
+                    
+                    # Upload test results
+                    ./node_modules/.bin/slnodejs uploadReports \
+                        --tokenfile sealights/sltoken.txt \
+                        --buildsessionidfile buildSessionId \
+                        --labid "dd-devjs-laptop" \
+                        --reportFile junit.xml
 
-                # Close the test stage
-                ./node_modules/.bin/slnodejs end \
-                    --tokenfile sealights/sltosltoken.txt \
-                    --buildsessionidfile buildSessionId \
-                    --labid "dd-devjs-laptop"
-            """
+                    # Close the test stage
+                    ./node_modules/.bin/slnodejs end \
+                        --tokenfile sealights/sltosltoken.txt \
+                        --buildsessionidfile buildSessionId \
+                        --labid "dd-devjs-laptop"
+                """
+            }
         }
         stage('Deploy to QA') {
             steps {
