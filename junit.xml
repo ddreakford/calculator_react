@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="32" failures="0" errors="0" time="1.989">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2022-10-30T22:18:41" time="0.606" tests="1">
+    <testcase classname=" renders without crashing" name=" renders without crashing" time="0.067">
+    </testcase>
+  </testsuite>
+  <testsuite name="calculate" errors="0" failures="0" skipped="0" timestamp="2022-10-30T22:18:41" time="0.123" tests="31">
+    <testcase classname="calculate buttons 6 -&gt; {&quot;next&quot;:&quot;6&quot;}" name="calculate buttons 6 -&gt; {&quot;next&quot;:&quot;6&quot;}" time="0.002">
+    </testcase>
+    <testcase classname="calculate buttons 6,6 -&gt; {&quot;next&quot;:&quot;66&quot;}" name="calculate buttons 6,6 -&gt; {&quot;next&quot;:&quot;66&quot;}" time="0">
+    </testcase>
+    <testcase classname="calculate buttons 6,+,6 -&gt; {&quot;next&quot;:&quot;6&quot;,&quot;total&quot;:&quot;6&quot;,&quot;operation&quot;:&quot;+&quot;}" name="calculate buttons 6,+,6 -&gt; {&quot;next&quot;:&quot;6&quot;,&quot;total&quot;:&quot;6&quot;,&quot;operation&quot;:&quot;+&quot;}" time="0.001">
+    </testcase>
+    <testcase classname="calculate buttons 6,+,6,= -&gt; {&quot;total&quot;:&quot;12&quot;}" name="calculate buttons 6,+,6,= -&gt; {&quot;total&quot;:&quot;12&quot;}" time="0.002">
+    </testcase>
+    <testcase classname="calculate buttons 0,0,+,0,= -&gt; {&quot;total&quot;:&quot;0&quot;}" name="calculate buttons 0,0,+,0,= -&gt; {&quot;total&quot;:&quot;0&quot;}" time="0.001">
+    </testcase>
+    <testcase classname="calculate buttons 6,+,6,=,9 -&gt; {&quot;next&quot;:&quot;9&quot;}" name="calculate buttons 6,+,6,=,9 -&gt; {&quot;next&quot;:&quot;9&quot;}" time="0.001">
+    </testcase>
+    <testcase classname="calculate buttons 3,+,6,=,+ -&gt; {&quot;total&quot;:&quot;9&quot;,&quot;operation&quot;:&quot;+&quot;}" name="calculate buttons 3,+,6,=,+ -&gt; {&quot;total&quot;:&quot;9&quot;,&quot;operation&quot;:&quot;+&quot;}" time="0.002">
+    </testcase>
+    <testcase classname="calculate buttons 3,+,6,=,+,9 -&gt; {&quot;total&quot;:&quot;9&quot;,&quot;operation&quot;:&quot;+&quot;,&quot;next&quot;:&quot;9&quot;}" name="calculate buttons 3,+,6,=,+,9 -&gt; {&quot;total&quot;:&quot;9&quot;,&quot;operation&quot;:&quot;+&quot;,&quot;next&quot;:&quot;9&quot;}" time="0.002">
+    </testcase>
+    <testcase classname="calculate buttons 3,+,6,=,+,9,= -&gt; {&quot;total&quot;:&quot;18&quot;}" name="calculate buttons 3,+,6,=,+,9,= -&gt; {&quot;total&quot;:&quot;18&quot;}" time="0.003">
+    </testcase>
+    <testcase classname="calculate buttons 3,+,=,3,= -&gt; {&quot;total&quot;:&quot;6&quot;}" name="calculate buttons 3,+,=,3,= -&gt; {&quot;total&quot;:&quot;6&quot;}" time="0.002">
+    </testcase>
+    <testcase classname="calculate buttons + -&gt; {&quot;operation&quot;:&quot;+&quot;}" name="calculate buttons + -&gt; {&quot;operation&quot;:&quot;+&quot;}" time="0.001">
+    </testcase>
+    <testcase classname="calculate buttons +,2 -&gt; {&quot;next&quot;:&quot;2&quot;,&quot;operation&quot;:&quot;+&quot;}" name="calculate buttons +,2 -&gt; {&quot;next&quot;:&quot;2&quot;,&quot;operation&quot;:&quot;+&quot;}" time="0.001">
+    </testcase>
+    <testcase classname="calculate buttons +,2,+ -&gt; {&quot;total&quot;:&quot;2&quot;,&quot;operation&quot;:&quot;+&quot;}" name="calculate buttons +,2,+ -&gt; {&quot;total&quot;:&quot;2&quot;,&quot;operation&quot;:&quot;+&quot;}" time="0.002">
+    </testcase>
+    <testcase classname="calculate buttons +,2,+,+ -&gt; {&quot;total&quot;:&quot;2&quot;,&quot;operation&quot;:&quot;+&quot;}" name="calculate buttons +,2,+,+ -&gt; {&quot;total&quot;:&quot;2&quot;,&quot;operation&quot;:&quot;+&quot;}" time="0">
+    </testcase>
+    <testcase classname="calculate buttons +,2,+,5 -&gt; {&quot;next&quot;:&quot;5&quot;,&quot;total&quot;:&quot;2&quot;,&quot;operation&quot;:&quot;+&quot;}" name="calculate buttons +,2,+,5 -&gt; {&quot;next&quot;:&quot;5&quot;,&quot;total&quot;:&quot;2&quot;,&quot;operation&quot;:&quot;+&quot;}" time="0">
+    </testcase>
+    <testcase classname="calculate buttons +,2,5 -&gt; {&quot;next&quot;:&quot;25&quot;,&quot;operation&quot;:&quot;+&quot;}" name="calculate buttons +,2,5 -&gt; {&quot;next&quot;:&quot;25&quot;,&quot;operation&quot;:&quot;+&quot;}" time="0.002">
+    </testcase>
+    <testcase classname="calculate buttons +,2,5 -&gt; {&quot;next&quot;:&quot;25&quot;,&quot;operation&quot;:&quot;+&quot;}" name="calculate buttons +,2,5 -&gt; {&quot;next&quot;:&quot;25&quot;,&quot;operation&quot;:&quot;+&quot;}" time="0.001">
+    </testcase>
+    <testcase classname="calculate buttons +,6,+,5,= -&gt; {&quot;total&quot;:&quot;11&quot;}" name="calculate buttons +,6,+,5,= -&gt; {&quot;total&quot;:&quot;11&quot;}" time="0.001">
+    </testcase>
+    <testcase classname="calculate buttons 0,.,4 -&gt; {&quot;next&quot;:&quot;0.4&quot;}" name="calculate buttons 0,.,4 -&gt; {&quot;next&quot;:&quot;0.4&quot;}" time="0.001">
+    </testcase>
+    <testcase classname="calculate buttons .,4 -&gt; {&quot;next&quot;:&quot;0.4&quot;}" name="calculate buttons .,4 -&gt; {&quot;next&quot;:&quot;0.4&quot;}" time="0">
+    </testcase>
+    <testcase classname="calculate buttons .,4,-,.,2 -&gt; {&quot;total&quot;:&quot;0.4&quot;,&quot;next&quot;:&quot;0.2&quot;,&quot;operation&quot;:&quot;-&quot;}" name="calculate buttons .,4,-,.,2 -&gt; {&quot;total&quot;:&quot;0.4&quot;,&quot;next&quot;:&quot;0.2&quot;,&quot;operation&quot;:&quot;-&quot;}" time="0.001">
+    </testcase>
+    <testcase classname="calculate buttons .,4,-,.,2,= -&gt; {&quot;total&quot;:&quot;0.2&quot;}" name="calculate buttons .,4,-,.,2,= -&gt; {&quot;total&quot;:&quot;0.2&quot;}" time="0">
+    </testcase>
+    <testcase classname="calculate buttons 1,+,2,AC -&gt; {}" name="calculate buttons 1,+,2,AC -&gt; {}" time="0">
+    </testcase>
+    <testcase classname="calculate buttons +,2,AC -&gt; {}" name="calculate buttons +,2,AC -&gt; {}" time="0.003">
+    </testcase>
+    <testcase classname="calculate buttons 4,% -&gt; {&quot;next&quot;:&quot;0.04&quot;}" name="calculate buttons 4,% -&gt; {&quot;next&quot;:&quot;0.04&quot;}" time="0.001">
+    </testcase>
+    <testcase classname="calculate buttons 4,%,x,2,= -&gt; {&quot;total&quot;:&quot;0.08&quot;}" name="calculate buttons 4,%,x,2,= -&gt; {&quot;total&quot;:&quot;0.08&quot;}" time="0">
+    </testcase>
+    <testcase classname="calculate buttons 4,%,x,2 -&gt; {&quot;total&quot;:&quot;0.04&quot;,&quot;operation&quot;:&quot;x&quot;,&quot;next&quot;:&quot;2&quot;}" name="calculate buttons 4,%,x,2 -&gt; {&quot;total&quot;:&quot;0.04&quot;,&quot;operation&quot;:&quot;x&quot;,&quot;next&quot;:&quot;2&quot;}" time="0">
+    </testcase>
+    <testcase classname="calculate buttons 2,x,2,% -&gt; {&quot;total&quot;:&quot;0.04&quot;}" name="calculate buttons 2,x,2,% -&gt; {&quot;total&quot;:&quot;0.04&quot;}" time="0">
+    </testcase>
+    <testcase classname="calculate buttons 2,x,x -&gt; {&quot;total&quot;:&quot;2&quot;,&quot;operation&quot;:&quot;x&quot;}" name="calculate buttons 2,x,x -&gt; {&quot;total&quot;:&quot;2&quot;,&quot;operation&quot;:&quot;x&quot;}" time="0">
+    </testcase>
+    <testcase classname="calculate buttons 2,÷,÷ -&gt; {&quot;total&quot;:&quot;2&quot;,&quot;operation&quot;:&quot;÷&quot;}" name="calculate buttons 2,÷,÷ -&gt; {&quot;total&quot;:&quot;2&quot;,&quot;operation&quot;:&quot;÷&quot;}" time="0">
+    </testcase>
+    <testcase classname="calculate buttons 2,÷,x,+,-,x -&gt; {&quot;total&quot;:&quot;2&quot;,&quot;operation&quot;:&quot;x&quot;}" name="calculate buttons 2,÷,x,+,-,x -&gt; {&quot;total&quot;:&quot;2&quot;,&quot;operation&quot;:&quot;x&quot;}" time="0">
+    </testcase>
+  </testsuite>
+</testsuites>

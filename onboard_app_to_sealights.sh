@@ -4,8 +4,16 @@
 # This process, except for the prerequisite dryRun run,
 # can be automated (see Jenkinsfile).
 
-# Install the SeaLights Node.js agent. 
-# This is used for both front end JS and Node JS.
+# The app was created using CRA (Create React App), so
+# Jest is used as the unit test runner.
+#
+# These packages are used to generate the coverage and 
+# test results files that are uploaded to SeaLights.
+npm install jest-cli
+npm install jest-junit
+
+# Install the SeaLights Node.js agent
+# (it's used for both front end JS and Node JS)
 npm install slnodejs
 
 # Build the [React.js] app
@@ -14,7 +22,9 @@ export PUBLIC_URL="/" && npm run build
 
 # [PREREQ]
 # Run dryRun to identify and fix issues that would inhibit successful 
-# onboarding.
+# onboarding. Detailed results are provided in the folder:
+# ./sl-dry-run-output
+#
 ./node_modules/.bin/slnodejs dryRun --verbose --instrumentForBrowsers \
     --workspacepath "./build" \
     --scm git \
@@ -27,13 +37,17 @@ export PUBLIC_URL="/" && npm run build
 # Bring in the agent token
 mkdir sealights && cp $AGENT_TOKEN_FILE sealights/
 
-# Generate a session id
-export BUILD_TIME=`date +"%y%m%d_%H%M"`
+# Enable logging for the SL Node.js agent
+export NODE_DEBUG=sl-file
+export SL_LOG_LEVEL=debug
+
+# Generate a Build Session ID
+export BUILD_TIME=(date +"%y%m%d_%H%M")
 ./node_modules/.bin/slnodejs config \
     --tokenfile sealights/sltoken-dev-cs.txt \
     --appname "Calculator-React-DD" \
     --branch "master" \
-    --build "3.$BUILD_TIME"
+    --build "4.$BUILD_TIME"
 
 # Scan the JS and intrument for the browser agent
 ./node_modules/.bin/slnodejs scan --instrumentForBrowsers \
@@ -49,27 +63,58 @@ export BUILD_TIME=`date +"%y%m%d_%H%M"`
 # Optional: Review the list of instrumented files
 # diff -qr build sl_build
 
-# Deploy the instrumented JS for testing
-# Optional: Replace original build with instrumented version
-#
-# mv build build_original
-# mv sl_build build
-# http-server ./build
+# -------------------------------------
+# Unit Tests
+# -------------------------------------
 
-# Start the app
+# Open the test stage
+./node_modules/.bin/slnodejs start \
+    --tokenfile sealights/sltoken-dev-cs.txt \
+    --buildsessionidfile buildSessionId \
+    --labid dd-devjs-laptop \
+    --testStage "Unit Tests"
+
+# Run the unit tests
+CI=true npm run test:ci
+
+# Upload coverage report
+./node_modules/.bin/slnodejs nycReport \
+    --tokenfile sealights/sltoken-dev-cs.txt \
+    --buildsessionidfile buildSessionId \
+    --labid dd-devjs-laptop \
+    --report coverage/coverage-final.json
+
+# Upload test results
+./node_modules/.bin/slnodejs uploadReports \
+    --tokenfile sealights/sltoken-dev-cs.txt \
+    --buildsessionidfile buildSessionId \
+    --labid dd-devjs-laptop \
+    --reportFile junit.xml
+
+# End the test sgage
+./node_modules/.bin/slnodejs end \
+    --tokenfile sealights/sltoken-dev-cs.txt \
+    --buildsessionidfile buildSessionId \
+    --labid dd-devjs-laptop
+
+# Deploy the instrumented JS for other test stages
+# (Either start with instrumented version, or replace
+# normally distributed files with instrumented files)
 http-server ./sl_build
 
-# Open a test stage
+#
+# Manual Tests
+#
+# Open the test stage
 ./node_modules/.bin/slnodejs start \
     --tokenfile sealights/sltoken-dev-cs.txt \
     --buildsessionidfile buildSessionId \
     --labid dd-devjs-laptop \
     --teststage "Manual Tests"
 
-# Report each test 
-# ...
+# Manually report each test...
 
-# Close a test stage
+# Close the test stage
 ./node_modules/.bin/slnodejs end \
     --tokenfile sealights/sltoken-dev-cs.txt \
     --buildsessionidfile buildSessionId \
