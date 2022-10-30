@@ -8,7 +8,7 @@ pipeline {
     }
     environment {
         SL_APP_NAME = "Calculator-React-DD"
-        SL_BUILD_NAME = "4.0.${BUILD_NUMBER}"
+        SL_BUILD_NAME = "4.1.${BUILD_NUMBER}_jenkins"
     }
 
     stages {
@@ -35,7 +35,7 @@ pipeline {
                     // Save the agent token in a file
                     sh '''
                         rm -rf sealights && mkdir sealights
-                        npm install slnodejs
+                        # npm install slnodejs
                         echo $SL_TOKEN > sealights/sltoken.txt
                         ls -l sealights
                     '''
@@ -43,10 +43,14 @@ pipeline {
             }
         }
 
-        stage('Create the SL Build Session') {
+        stage('Create SL Build Session') {
             steps {
                 // File, buildSessionId, is written by this step
                 sh """
+                    # Enable SL agent debugging
+                    export NODE_DEBUG=sl-file
+                    export SL_LOG_LEVEL=debug
+
                     ./node_modules/.bin/slnodejs config \
                         --tokenfile sealights/sltoken.txt \
                         --appname "${SL_APP_NAME}" \
@@ -58,12 +62,14 @@ pipeline {
             }
         }
 
-        stage('Scan/Instrument front end JS') {
+        stage('Scan/Instrument JS') {
             steps {
-                // Each module built by gradle will be scanned
-                // The build map will be reported to SeaLights
-                // Any Unit and Integration tests will be monitored
+                // Scan the JS and intrument for the browser agent
                 sh """
+                    # Enable SL agent debugging
+                    export NODE_DEBUG=sl-file
+                    export SL_LOG_LEVEL=debug
+
                     ./node_modules/.bin/slnodejs scan --instrumentForBrowsers \
                         --tokenfile sealights/sltoken.txt \
                         --buildsessionidfile sealights/buildSessionId \
@@ -75,6 +81,42 @@ pipeline {
                         --babylonPlugins jsx
                 """
             }
+        }
+        stage('Unit Tests') {
+            sh """
+                # Enable SL agent debugging
+                export NODE_DEBUG=sl-file
+                export SL_LOG_LEVEL=debug
+
+                # Open the test stage
+                ./node_modules/.bin/slnodejs start \
+                    --tokenfile sealights/sltoken.txt \
+                    --buildsessionidfile sealights/buildSessionId \
+                    --labid "dd-devjs-laptop" \
+                    --testStage "Unit Tests"
+
+                CI=true npm run test:ci
+                
+                # Upload the coverage report
+                ./node_modules/.bin/slnodejs nycReport \
+                    --tokenfile sealights/sltoken.txt \
+                    --buildsessionidfile buildSessionId \
+                    --labid "dd-devjs-laptop" \
+                    --report coverage/coverage-final.json
+                
+                # Upload test results
+                ./node_modules/.bin/slnodejs uploadReports \
+                    --tokenfile sealights/sltoken.txt \
+                    --buildsessionidfile buildSessionId \
+                    --labid "dd-devjs-laptop" \
+                    --reportFile junit.xml
+
+                # Close the test stage
+                ./node_modules/.bin/slnodejs end \
+                    --tokenfile sealights/sltosltoken.txt \
+                    --buildsessionidfile buildSessionId \
+                    --labid "dd-devjs-laptop"
+            """
         }
         stage('Deploy to QA') {
             steps {
