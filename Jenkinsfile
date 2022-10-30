@@ -101,22 +101,22 @@ pipeline {
                     # Upload the coverage report
                     ./node_modules/.bin/slnodejs nycReport \
                         --tokenfile sealights/sltoken.txt \
-                        --buildsessionidfile buildSessionId \
+                        --buildsessionidfile sealights/buildSessionId \
                         --labid "dd-devjs-laptop" \
                         --report coverage/coverage-final.json
                     
                     # Upload test results
                     ./node_modules/.bin/slnodejs uploadReports \
                         --tokenfile sealights/sltoken.txt \
-                        --buildsessionidfile buildSessionId \
+                        --buildsessionidfile sealights/buildSessionId \
                         --labid "dd-devjs-laptop" \
                         --reportFile junit.xml
 
                     # Close the test stage
                     ./node_modules/.bin/slnodejs end \
-                        --tokenfile sealights/sltosltoken.txt \
-                        --buildsessionidfile buildSessionId \
-                        --labid "dd-devjs-laptop"
+                        --tokenfile sealights/sltoken.txt \
+                        --buildsessionidfile sealights/buildSessionId \
+                        --labid "dd-devjs-laptop" \
                 """
             }
         }
