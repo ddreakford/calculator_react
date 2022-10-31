@@ -18,3 +18,4 @@ sl_build
 sl-dry-run-output
 sltoken*.txt
 buildSessionId
+sl.node.log
