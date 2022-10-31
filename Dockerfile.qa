@@ -11,6 +11,7 @@ RUN npm install http-server
 
 # Add app
 COPY        sl_build/ ./sl_build/
+COPY        src/ ./src/
 EXPOSE      8092
 
 ENTRYPOINT ["./node_modules/.bin/http-server", "./sl_build", "-p 8092"]
