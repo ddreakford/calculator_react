@@ -31,11 +31,11 @@ pipeline {
         stage('Install SeaLights agent') {
             steps {
                 withCredentials([string(credentialsId: 'SL_AGENT_TOKEN', variable: 'SL_TOKEN')]) {
-                    // Download the agent
+                    // Install the SL agent
                     // Save the agent token in a file
                     sh '''
                         rm -rf sealights && mkdir sealights
-                        # npm install slnodejs
+                        npm install slnodejs
                         echo $SL_TOKEN > sealights/sltoken.txt
                         ls -l sealights
                     '''
