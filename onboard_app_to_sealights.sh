@@ -91,7 +91,7 @@ CI=true npm run test:ci
     --labid dd-devjs-laptop \
     --reportFile junit.xml
 
-# End the test sgage
+# End the test stage
 ./node_modules/.bin/slnodejs end \
     --tokenfile sealights/sltoken-dev-cs.txt \
     --buildsessionidfile buildSessionId \
@@ -101,33 +101,4 @@ CI=true npm run test:ci
 # (Either start with instrumented version, or replace
 # normally distributed files with instrumented files)
 http-server ./sl_build
-
-#
-# Manual Tests
-#
-# Open the test stage
-./node_modules/.bin/slnodejs start \
-    --tokenfile sealights/sltoken-dev-cs.txt \
-    --buildsessionidfile buildSessionId \
-    --labid dd-devjs-laptop \
-    --teststage "Manual Tests"
-
-# Manually report each test...
-
-# Close the test stage
-./node_modules/.bin/slnodejs end \
-    --tokenfile sealights/sltoken-dev-cs.txt \
-    --buildsessionidfile buildSessionId \
-    --labid dd-devjs-laptop
-
-
-
-
-
-
-
-
-
-
-
 
