@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     parameters {
+        string(name: 'TOKEN', defaultValue: 'sl.agent.token', description: 'Name/key of the SL agent token credential')
         string(name: 'BRANCH', defaultValue: 'master', description: 'The branch to locally clone, build and onboard to SeaLights')
         string(name: 'DOCKER_REPO', defaultValue: 'dwaynedreakford', description: 'Your Docker repo')
         string(name: 'APP_IMAGE_NAME', defaultValue: 'react_calculator', description: 'Name of the image to be deployed')
@@ -30,7 +31,7 @@ pipeline {
 
         stage('Install SeaLights agent') {
             steps {
-                withCredentials([string(credentialsId: 'SL_AGENT_TOKEN', variable: 'SL_TOKEN')]) {
+                withCredentials([string(credentialsId: params.TOKEN, variable: 'SL_TOKEN')]) {
                     // Install the SL agent
                     // Save the agent token in a file
                     sh '''
