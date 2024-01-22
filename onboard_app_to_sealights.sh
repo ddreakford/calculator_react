@@ -16,6 +16,9 @@ npm install jest-junit
 # (it's used for both front end JS and Node JS)
 npm install slnodejs
 
+# Workaround for https://stackoverflow.com/a/69699772
+export NODE_OPTIONS=--openssl-legacy-provider
+
 # Build the [React.js] app
 #
 export PUBLIC_URL="/" && npm run build 
@@ -39,7 +42,7 @@ mkdir sealights && cp $AGENT_TOKEN_FILE sealights/
 
 # Enable logging for the SL Node.js agent
 export NODE_DEBUG=sl-file
-export SL_LOG_LEVEL=debug
+export SL_LOG_LEVEL=info
 
 # Generate a Build Session ID
 export BUILD_TIME=(date +"%y%m%d_%H%M")

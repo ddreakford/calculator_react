@@ -24,6 +24,10 @@ pipeline {
             steps {
                 sh """
                     npm install
+                    
+                    # Workaround for https://stackoverflow.com/a/69699772
+                    export NODE_OPTIONS=--openssl-legacy-provider
+
                     export PUBLIC_URL="/" && npm run build 
                 """
             }
