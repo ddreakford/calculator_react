@@ -11,10 +11,9 @@ import Big from 'big.js';
  *
  * @throws {Error} If an unknown operation is provided.
  */
-export default async function operate(numberOne, numberTwo, operation) {
+export default function operate(numberOne, numberTwo, operation) {
   const one = Big(numberOne || "0");
   const two = Big(numberTwo || (operation === "÷" || operation === 'x' ? "1": "0")); //If dividing or multiplying, then 1 maintains current value in cases of null
-  const yourBackEndServiceUrl = "http://localhost:8091/calculator/"; // Replace with your actual
 
   // Create an http get request to a backend service to perform addition.
   // The back end service should validate the inputs and handle any necessary validations.
@@ -26,18 +25,8 @@ export default async function operate(numberOne, numberTwo, operation) {
   // return result.result;
 
   if (operation === "+") {
-    const response = await fetch(`${yourBackEndServiceUrl}/+/${one}/${two}/`);
-    if (!response.ok) {
-      // Write an error message to the console for debugging purposes.
-      // Do not throw an exception here. Allow continuation by calculating locally.
-      console.error(`Failed to perform remote operation '${operation}': ${response.statusText}`);
-      console.info(`Using local calculation for operation '${operation}'`);
-      return one.plus(two).toString();
-    }
-    const result = await response.json();
-    console.info(`Result of remote operation '${operation}': ${result.toString()}`);
-    // Get the value associated with the 'result' key in the response.
-    return result.result;
+    // const response = await fetch(`${yourBackEndServiceUrl}/+/${one}/${two}/`);
+    return one.plus(two).toString();
   }
   if (operation === "-") {
     // const response = await fetch(`${yourBackEndServiceUrl}/-/${one}/${two}/`);
