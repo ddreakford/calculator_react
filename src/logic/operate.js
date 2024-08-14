@@ -35,6 +35,7 @@ export default async function operate(numberOne, numberTwo, operation) {
       return one.plus(two).toString();
     }
     const result = await response.json();
+    console.info(`Result of remote operation '${operation}': ${result.toString()}`);
     // Get the value associated with the 'result' key in the response.
     return result.result;
   }
