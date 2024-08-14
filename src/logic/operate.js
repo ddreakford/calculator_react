@@ -1,3 +1,5 @@
+import Big from 'big.js';
+
 /**
  * Performs a mathematical operation on two numbers using the provided operator.
  *
