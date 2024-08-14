@@ -35,7 +35,8 @@ export default async function operate(numberOne, numberTwo, operation) {
       return one.plus(two).toString();
     }
     const result = await response.json();
-    return result.toString();
+    // Get the value associated with the 'result' key in the response.
+    return result.result;
   }
   if (operation === "-") {
     // const response = await fetch(`${yourBackEndServiceUrl}/-/${one}/${two}/`);
