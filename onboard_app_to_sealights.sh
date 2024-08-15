@@ -44,6 +44,9 @@ mkdir sealights && cp $AGENT_TOKEN_FILE sealights/
 export NODE_DEBUG=sl-file
 export SL_LOG_LEVEL=info
 
+# If needed to bypass SSL issues...
+# export NODE_TLS_REJECT_UNAUTHORIZED=0
+
 # Generate a Build Session ID
 export BUILD_TIME=(date +"%y%m%d_%H%M")
 ./node_modules/.bin/slnodejs config \
