@@ -35,7 +35,7 @@ export PUBLIC_URL="/" && npm run build
     --babylonPlugins jsx
 
 # Optional: Ensure the app works before instrumentation
-# http-server ./build
+# npx http-server ./build
 
 # Bring in the agent token
 mkdir sealights && cp $AGENT_TOKEN_FILE sealights/
